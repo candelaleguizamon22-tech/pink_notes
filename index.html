@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Classroom</title>
+    <link rel="stylesheet" href="tareas-escolares.css">
+</head>
+<body>
+
+<header>
+    <h1>📚 Mi Classroom</h1>
+    <p>Tu espacio para organizar las tareas escolares 🌸</p>
+</header>
+
+<main>
+    <section id="acceso" class="panel">
+        <h2>Bienvenida 💗</h2>
+        <input type="email" id="email" placeholder="Correo electrónico">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="registrar()">Crear cuenta</button>
+        <button onclick="iniciarSesion()">Iniciar sesión</button>
+    </section>
+
+    <section id="contenido" class="oculto">
+        <div class="panel">
+            <h2>Agregar nueva tarea 📝</h2>
+            <input type="text" id="titulo" placeholder="Nombre de la tarea">
+            <input type="text" id="materia" placeholder="Materia">
+            <textarea id="descripcion" placeholder="Descripción"></textarea>
+            <label>Fecha de entrega:</label>
+            <input type="date" id="fecha">
+            <button onclick="agregarTarea()">Guardar tarea</button>
+            <button onclick="cerrarSesion()">Cerrar sesión</button>
+        </div>
+
+        <section class="panel">
+            <h2>Mis actividades 🌷</h2>
+            <div id="contenedorTareas"></div>
+        </section>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="Tareas-Escolaress.js"></script>
+</body>
+</html>
