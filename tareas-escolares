@@ -1,0 +1,115 @@
+estilos.css
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8eee9;
+    color: #755548;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    background: #b8e3d5;
+    padding: 30px 15px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    color: #755548;
+    margin-bottom: 10px;
+}
+
+main {
+    max-width: 750px;
+    margin: auto;
+}
+
+.panel {
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px #ddc9c0;
+}
+
+h2 {
+    color: #946b7a;
+    margin-bottom: 15px;
+}
+
+input, textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #b8e3d5;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+button {
+    background: #b8e3d5;
+    color: #755548;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #f3c5d2;
+}
+
+.card {
+    background: #f8eee9;
+    padding: 16px;
+    border-radius: 14px;
+    margin: 12px 0;
+    overflow-wrap: anywhere;
+}
+
+.card h3 {
+    color: #946b7a;
+    margin-bottom: 10px;
+}
+
+.oculto {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 22px 10px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .panel {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+        margin: 6px 0;
+        min-height: 44px;
+    }
+}
