@@ -14,12 +14,12 @@ async function registrar() {
     const password = document.getElementById("password").value;
 
     if (!email || !password) {
-        alert("Ingresá un correo electrónico y una contraseña.");
+        alert("IngresÃ¡ un correo electrÃ³nico y una contraseÃ±a.");
         return;
     }
 
     if (password.length < 6) {
-        alert("La contraseña debe tener al menos 6 caracteres.");
+        alert("La contraseÃ±a debe tener al menos 6 caracteres.");
         return;
     }
 
@@ -37,17 +37,17 @@ async function registrar() {
         usuario = data.user;
         mostrarAplicacion();
     } else {
-        alert("¡Cuenta creada! Revisá tu correo para confirmar el registro antes de iniciar sesión.");
+        alert("Â¡Cuenta creada! RevisÃ¡ tu correo para confirmar el registro antes de iniciar sesiÃ³n.");
     }
 }
 
-// INICIAR SESIÓN
+// INICIAR SESIÃN
 async function iniciarSesion() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
     if (!email || !password) {
-        alert("Ingresá tu correo electrónico y contraseña.");
+        alert("IngresÃ¡ tu correo electrÃ³nico y contraseÃ±a.");
         return;
     }
 
@@ -65,7 +65,7 @@ async function iniciarSesion() {
     mostrarAplicacion();
 }
 
-// CERRAR SESIÓN
+// CERRAR SESIÃN
 async function cerrarSesion() {
     await db.auth.signOut();
     usuario = null;
@@ -75,7 +75,7 @@ async function cerrarSesion() {
     document.getElementById("contenido").classList.add("oculto");
 }
 
-// MOSTRAR APLICACIÓN
+// MOSTRAR APLICACIÃN
 function mostrarAplicacion() {
     document.getElementById("acceso").classList.add("oculto");
     document.getElementById("contenido").classList.remove("oculto");
@@ -86,7 +86,7 @@ function mostrarAplicacion() {
 // AGREGAR TAREA
 async function agregarTarea() {
     if (!usuario) {
-        alert("Tenés que iniciar sesión primero.");
+        alert("TenÃ©s que iniciar sesiÃ³n primero.");
         return;
     }
 
@@ -96,7 +96,7 @@ async function agregarTarea() {
     const fecha = document.getElementById("fecha").value;
 
     if (!titulo || !materia || !descripcion || !fecha) {
-        alert("Completá todos los campos.");
+        alert("CompletÃ¡ todos los campos.");
         return;
     }
 
@@ -105,7 +105,7 @@ async function agregarTarea() {
         materia,
         descripcion,
         fecha_entrega: fecha,
-        entado: "pendiente",
+        estado: "pendiente",
         user_id: usuario.id
     });
 
@@ -124,12 +124,15 @@ async function agregarTarea() {
 
 // CARGAR TAREAS
 async function cargarTareas() {
+    if (!usuario) return;
+
     const contenedor = document.getElementById("contenedorTareas");
     contenedor.innerHTML = "Cargando tareas...";
 
     const { data, error } = await db
         .from("tareas")
         .select("*")
+        .eq("user_id", usuario.id)
         .order("fecha_entrega", { ascending: true });
 
     if (error) {
@@ -140,7 +143,7 @@ async function cargarTareas() {
     contenedor.innerHTML = "";
 
     if (data.length === 0) {
-        contenedor.textContent = "Todavía no tenés tareas 🌸";
+        contenedor.textContent = "TodavÃ­a no tenÃ©s tareas ð¸";
         return;
     }
 
@@ -149,7 +152,7 @@ async function cargarTareas() {
         tarjeta.className = "card";
 
         const titulo = document.createElement("h3");
-        titulo.textContent = "📚 " + tarea.titulo;
+        titulo.textContent = "ð " + tarea.titulo;
 
         const materia = document.createElement("p");
         materia.textContent = "Materia: " + tarea.materia;
@@ -161,7 +164,7 @@ async function cargarTareas() {
         fecha.textContent = "Entrega: " + tarea.fecha_entrega;
 
         const estado = document.createElement("p");
-        estado.textContent = "Estado: " + (tarea.entado || "pendiente");
+        estado.textContent = "Estado: " + (tarea.estado || "pendiente");
 
         tarjeta.append(titulo, materia, descripcion, fecha, estado);
 
@@ -186,7 +189,7 @@ async function cargarTareas() {
 async function cambiarEstado(id, nuevoEstado) {
     const { error } = await db
         .from("tareas")
-        .update({ entado: nuevoEstado })
+        .update({ estado: nuevoEstado })
         .eq("id", id);
 
     if (error) {
@@ -199,7 +202,7 @@ async function cambiarEstado(id, nuevoEstado) {
 
 // ELIMINAR TAREA
 async function eliminarTarea(id) {
-    if (!confirm("¿Querés eliminar esta tarea?")) return;
+    if (!confirm("Â¿QuerÃ©s eliminar esta tarea?")) return;
 
     const { error } = await db
         .from("tareas")
@@ -214,7 +217,7 @@ async function eliminarTarea(id) {
     cargarTareas();
 }
 
-// RECUPERAR SESIÓN
+// RECUPERAR SESIÃN
 async function comprobarSesion() {
     const { data, error } = await db.auth.getSession();
 
