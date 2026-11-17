@@ -14,12 +14,12 @@ async function registrar() {
     const password = document.getElementById("password").value;
 
     if (!email || !password) {
-        alert("IngresÃ¡ un correo electrÃ³nico y una contraseÃ±a.");
+        alert("Ingresá un correo electrónico y una contraseña.");
         return;
     }
 
     if (password.length < 6) {
-        alert("La contraseÃ±a debe tener al menos 6 caracteres.");
+        alert("La contraseña debe tener al menos 6 caracteres.");
         return;
     }
 
@@ -37,17 +37,17 @@ async function registrar() {
         usuario = data.user;
         mostrarAplicacion();
     } else {
-        alert("Â¡Cuenta creada! RevisÃ¡ tu correo para confirmar el registro antes de iniciar sesiÃ³n.");
+        alert("¡Cuenta creada! Revisá tu correo para confirmar el registro antes de iniciar sesión.");
     }
 }
 
-// INICIAR SESIÃN
+// INICIAR SESIÓN
 async function iniciarSesion() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
     if (!email || !password) {
-        alert("IngresÃ¡ tu correo electrÃ³nico y contraseÃ±a.");
+        alert("Ingresá tu correo electrónico y contraseña.");
         return;
     }
 
@@ -65,7 +65,7 @@ async function iniciarSesion() {
     mostrarAplicacion();
 }
 
-// CERRAR SESIÃN
+// CERRAR SESIÓN
 async function cerrarSesion() {
     await db.auth.signOut();
     usuario = null;
@@ -75,7 +75,7 @@ async function cerrarSesion() {
     document.getElementById("contenido").classList.add("oculto");
 }
 
-// MOSTRAR APLICACIÃN
+// MOSTRAR APLICACIÓN
 function mostrarAplicacion() {
     document.getElementById("acceso").classList.add("oculto");
     document.getElementById("contenido").classList.remove("oculto");
@@ -86,7 +86,7 @@ function mostrarAplicacion() {
 // AGREGAR TAREA
 async function agregarTarea() {
     if (!usuario) {
-        alert("TenÃ©s que iniciar sesiÃ³n primero.");
+        alert("Tenés que iniciar sesión primero.");
         return;
     }
 
@@ -96,7 +96,7 @@ async function agregarTarea() {
     const fecha = document.getElementById("fecha").value;
 
     if (!titulo || !materia || !descripcion || !fecha) {
-        alert("CompletÃ¡ todos los campos.");
+        alert("Completá todos los campos.");
         return;
     }
 
@@ -143,7 +143,7 @@ async function cargarTareas() {
     contenedor.innerHTML = "";
 
     if (data.length === 0) {
-        contenedor.textContent = "TodavÃ­a no tenÃ©s tareas ð¸";
+        contenedor.textContent = "Todavía no tenés tareas 🌸";
         return;
     }
 
@@ -152,7 +152,7 @@ async function cargarTareas() {
         tarjeta.className = "card";
 
         const titulo = document.createElement("h3");
-        titulo.textContent = "ð " + tarea.titulo;
+        titulo.textContent = "📚 " + tarea.titulo;
 
         const materia = document.createElement("p");
         materia.textContent = "Materia: " + tarea.materia;
@@ -202,7 +202,7 @@ async function cambiarEstado(id, nuevoEstado) {
 
 // ELIMINAR TAREA
 async function eliminarTarea(id) {
-    if (!confirm("Â¿QuerÃ©s eliminar esta tarea?")) return;
+    if (!confirm("¿Querés eliminar esta tarea?")) return;
 
     const { error } = await db
         .from("tareas")
@@ -217,7 +217,7 @@ async function eliminarTarea(id) {
     cargarTareas();
 }
 
-// RECUPERAR SESIÃN
+// RECUPERAR SESIÓN
 async function comprobarSesion() {
     const { data, error } = await db.auth.getSession();
 
